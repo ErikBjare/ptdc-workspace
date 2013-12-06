@@ -1,12 +1,14 @@
 import se.lth.cs.ptdc.shapes.Shape;
 import se.lth.cs.ptdc.window.SimpleWindow;
 
-public class ShapeList {
+import java.util.ArrayList;
+
+public class ShapeList extends ArrayList<Shape> {
 	/**
 	 * Skapar en tom lista.
 	 */
 	public ShapeList() {
-		// ...
+		super();
 	}
 
 	/**
@@ -16,7 +18,7 @@ public class ShapeList {
 	 *            figuren som ska läggas in i listan
 	 */
 	public void insert(Shape s) {
-		// ...
+		add(s);
 	}
 
 	/**
@@ -26,7 +28,9 @@ public class ShapeList {
 	 *            fönstret där figurerna ritas
 	 */
 	public void draw(SimpleWindow w) {
-		// ...
+		for(Shape s : this) {
+            s.draw(w);
+        }
 	}
 
 	/**
@@ -40,6 +44,11 @@ public class ShapeList {
 	 *            y-koordinaten
 	 */
 	public Shape findHit(int xc, int yc) {
-		return null;
+        for(Shape s : this) {
+            if(s.near(xc, yc)) {
+                return s;
+            }
+        }
+        return null;
 	}
 }
